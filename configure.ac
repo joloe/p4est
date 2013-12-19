@@ -2,6 +2,7 @@ dnl
 dnl This file is part of p4est.
 dnl
 
+
 AC_INIT([p4est],
         [m4_esyscmd([config/git-version-gen .tarball-version])],
         [ccgo@ices.utexas.edu])
@@ -11,7 +12,8 @@ AC_CONFIG_SRCDIR([src/p4est.h])
 AC_CONFIG_AUX_DIR([config])
 AC_PREFIX_DEFAULT([$PWD/local])
 AM_INIT_AUTOMAKE([subdir-objects])
-SC_PREFIX_CONFIG_H([src/p4est_config.h])
+AX_PREFIX_CONFIG_H([src/p4est_config.h],[p4est])
+SC_VERSION([P4EST])
 
 # Configure switches
 echo "o---------------------------------------"
@@ -28,6 +30,8 @@ P4EST_ARG_DISABLE([vtk-zlib], [disable zlib compression for vtk binary data],
 P4EST_ARG_DISABLE([2d], [disable the 2D library], [BUILD_2D])
 P4EST_ARG_DISABLE([3d], [disable the 3D library], [BUILD_3D])
 
+LT_INIT
+AC_SUBST([LIBTOOL_DEPS])
 # Configure builtin and external packages.
 #
 # There are 4 options for integrating libsc.

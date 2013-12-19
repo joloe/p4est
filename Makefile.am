@@ -23,6 +23,11 @@ noinst_PROGRAMS =
 sysconf_DATA =
 dist_p4estdata_DATA =
 
+
+ LIBTOOL_DEPS = @LIBTOOL_DEPS@
+          libtool: $(LIBTOOL_DEPS)
+                  $(SHELL) ./config.status libtool
+
 # use this if you want to link in p4est without autotools
 sysconf_DATA += Makefile.p4est.mk
 CLEANFILES += Makefile.p4est.mk
